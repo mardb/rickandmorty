@@ -1,33 +1,14 @@
-import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {Store} from './Store'
 
-class App extends Component {
 
-  sum(a:number, b:number) :number{
-    return a + b
-  }
-
-  render(){
+export default function App():JSX.Element {
+  const store = React.useContext(Store)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-          {this.sum(2, 15)}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <React.Fragment>
+      {console.log(store)}
+      <h1>Rick and Morty</h1>
+      <p> Pick your favorite episode!</p>
+    </React.Fragment>
+  )
 }
-}
-export default App;
