@@ -15,7 +15,7 @@ interface IAction {
   payload: any;
 }
 
-export const Store = React.createContext<IState>(initialState);
+export const Store = React.createContext<IState | any >(initialState);
 
 function reducer(state: IState, action: IAction): IState {
   switch (action.type) {
@@ -27,5 +27,6 @@ function reducer(state: IState, action: IAction): IState {
 }
 
 export function StoreProvider(props: any): JSX.Element {
-  return <Store.Provider value={initialState}>{props.children}</Store.Provider>;
+  const [state, dispatch] =  React.useReducer(reducer, initialState)
+  return <Store.Provider value={{state, dispatch}}>{props.children}</Store.Provider>;
 }
