@@ -1,6 +1,23 @@
 import React from "react";
 import { Store } from "./Store";
 
+
+interface IEpisode {
+  id: number, 
+  url: string,
+  name: string,
+  season: number,
+  number: number,
+  airdate: string,
+  airtime: string,
+  airstamp: string,
+  runtime: number,
+  image: {medium: string, original: string},
+  summary: string
+
+
+}
+
 export default function App(): JSX.Element {
   const { state, dispatch } = React.useContext(Store);
 
@@ -18,15 +35,17 @@ export default function App(): JSX.Element {
       payload: dataJSON._embedded.episodes,
     });
   };
-
+{console.log(state)}
   return (
     <React.Fragment>
-      <h1>Rick and Morty</h1>
-      <p> Pick your favorite episode!</p>
-      <section>
-        {state.episodes.map((episode: any) => {
+      <header className='header'>
+        <h1>Rick and Morty</h1>
+        <p> Pick your favorite episode!</p>
+      </header>
+      <section className='episode-layout'>
+        {state.episodes.map((episode: IEpisode) => {
           return (
-            <section key={episode.id}>
+            <section key={episode.id} className='episode-box'>
               <img src={episode.image.medium} alt={`Rick and Morty ${episode.name}`}/>
               <div>{episode.name}</div>
               <section>
