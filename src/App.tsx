@@ -41,8 +41,13 @@ export default function App(): JSX.Element {
   return (
     <React.Fragment>
       <header className='header'>
-        <h1>Rick and Morty</h1>
-        <p> Pick your favorite episode!</p>
+        <div>
+          <h1>Rick and Morty</h1>
+          <p> Pick your favorite episode!</p>
+        </div>
+        <div>
+          Favorite(s): {state.favorites.length}
+        </div>
       </header>
       <section className='episode-layout'>
         {state.episodes.map((episode: IEpisode) => {
