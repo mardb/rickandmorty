@@ -12,9 +12,10 @@ const RouterPage = (props: {pageComponent: JSX.Element} & RouteComponentProps) =
 ReactDOM.render(
   <StoreProvider>
     <Router>
-      <App path='/'></App>
+      <App path='/'>
         <RouterPage pageComponent={<HomePage/>} path='/' />
         <RouterPage pageComponent={<FavPage/>} path='/faves' />
+        </App>
     </Router>
   
   </StoreProvider>,
