@@ -20,10 +20,22 @@ export default function App(): JSX.Element {
     });
   };
 
-  const toggleFavAction= (episode: IEpisode): IAction => dispatch({
-    type: 'ADD_FAV',
-    payload: episode
-  })
+  const toggleFavAction= (episode: IEpisode): IAction => {
+    const episodesInFav = state.favorites.includes(episode)
+    let dispatchObject = {
+      type: 'ADD_FAV',
+      payload: episode
+    }
+    if(episodesInFav) {
+      const favWithoutEpisode = state.favorites.filter((fav: IEpisode)=> fav.id !== episode.id)
+      dispatchObject = {
+      type: 'REMOVE_FAV',
+      payload: favWithoutEpisode
+    }
+  }
+
+    return dispatch(dispatchObject)
+}
 
   {console.log(state)}
   return (
@@ -36,12 +48,14 @@ export default function App(): JSX.Element {
         {state.episodes.map((episode: IEpisode) => {
           return (
             <section key={episode.id} className='episode-box'>
-              <img src={episode.image.medium} alt={`Rick and Morty ${episode.name}`}/>
+              <img src={episode.image && episode.image.medium} alt={`Rick and Morty ${episode.name}`}/>
               <div>{episode.name}</div>
               <section>
                 <div>
                 Season: {episode.season} Number: {episode.number}</div>
-                <button type="button" onClick={()=> toggleFavAction(episode)}></button>
+                <button type="button" onClick={()=> toggleFavAction(episode)}>
+                  {state.favorites.find((fav : IEpisode) => fav.id === episode.id) ? 'Unfav' : 'Fav'}
+                </button>
               </section>
             </section>
           );
