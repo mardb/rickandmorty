@@ -1,3 +1,13 @@
+# Rick And Morty Episode Picker 
+
+This app was build using React.js and Typescript. 
+
+In this repository you will see:
+- Typescript, react hooks, (useState, useContext, useReducer and useEffect) suspense to lazy load a component, useReducer and Context.
+
+This app fetches data from a rick and morty API and I am able to filter episodes. I can add and remove my favorite episodes! 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
